@@ -1,3 +1,9 @@
+## Introduction
+
+## Modelling
+
+The soft robotic limb will need to be modeled in simulation before learning algorithms can be tested on it. To achieve realistic results it is important that the software used has certain properties; for example, the ability to accurately model soft materials.
+
 ## Welcome to GitHub Pages
 
 You can use the [editor on GitHub](https://github.com/esmeralday/esmeralday.github.io/edit/master/index.md) to maintain and preview the content for your website in Markdown files.
