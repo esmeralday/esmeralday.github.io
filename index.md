@@ -6,6 +6,7 @@ Modelling soft robots is a problematic task as many simulation softwares are una
 
 A software called SOFA (Simulation Open Framework Architecture) which is primarily used in simulation in medical fields has a soft robotics plugin which can be used to achieve the task at hand. Several tutorials can be found online on Youtube and some documentation is also included with the software when it is downloaded.
 
+{% include youtube.html id=91G-knmgnxM %}
 
 ## Welcome to GitHub Pages
 
