@@ -38,7 +38,7 @@ Markdown is a lightweight and easy-to-use syntax for styling your writing. It in
 
 ```
 
-The full code for this scene can be found at: [Link](https://github.com/SofaDefrost/SoftRobots/blob/master/docs/tutorials/FirstSteps/firststeps-tuto.pyscn)
+The full code for this scene can be found on the [Defrost robotics github](https://github.com/SofaDefrost/SoftRobots/blob/master/docs/tutorials/FirstSteps/firststeps-tuto.pyscn).
 
 
 
