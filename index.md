@@ -8,17 +8,40 @@ A software called SOFA (Simulation Open Framework Architecture) which is primari
 
 {% include youtubePlayer.html id="91G-knmgnxM" %}
 
-## Welcome to GitHub Pages
+## First Steps
 
-You can use the [editor on GitHub](https://github.com/esmeralday/esmeralday.github.io/edit/master/index.md) to maintain and preview the content for your website in Markdown files.
+After downloading the SOFA software along with the soft robotics plugin I began by setting up some simple scenes that can be animated on SOFA. To begin we can start by experimenting with an object, such as a cuboid, and a floor. The object falls until it hits the floor. The object can be translated to the right or left, causing it to miss the floor; in this instance it will remain in free fall. Every scene starts with a root node, and other objects are added in relation to this. Gravity is also modelled in the code.
 
-Whenever you commit to this repository, GitHub Pages will run [Jekyll](https://jekyllrb.com/) to rebuild the pages in your site, from the content in your Markdown files.
+
 
 ### Markdown
 
 Markdown is a lightweight and easy-to-use syntax for styling your writing. It includes conventions for
 
 ```markdown
+
+`def createScene(rootNode):
+    """This is my first scene"""
+    MainHeader(rootNode, gravity=[0.0,-981.0,0.0])
+    ContactHeader(rootNode, alarmDistance=15, contactDistance=10)
+
+    Floor(rootNode,
+          translation=[0.0,-160.0,0.0],
+          isAStaticObject=True)
+
+    Cube(rootNode,
+          translation=[0.0,0.0,0.0],
+          uniformScale=20.0)
+
+
+    return rootNode`
+
+```
+
+The full code for this scene can be found at 
+
+
+
 Syntax highlighted code block
 
 # Header 1
