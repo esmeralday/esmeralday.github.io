@@ -18,9 +18,9 @@ After downloading the SOFA software along with the soft robotics plugin I began 
 
 Markdown is a lightweight and easy-to-use syntax for styling your writing. It includes conventions for
 
-```markdown
+```python
 
-`def createScene(rootNode):
+def createScene(rootNode):
     """This is my first scene"""
     MainHeader(rootNode, gravity=[0.0,-981.0,0.0])
     ContactHeader(rootNode, alarmDistance=15, contactDistance=10)
@@ -34,7 +34,7 @@ Markdown is a lightweight and easy-to-use syntax for styling your writing. It in
           uniformScale=20.0)
 
 
-    return rootNode`
+    return rootNode
 
 ```
 
