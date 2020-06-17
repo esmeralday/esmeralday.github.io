@@ -14,9 +14,9 @@ After downloading the SOFA software along with the soft robotics plugin I began 
 
 
 
-### Markdown
+### Simple Scene
 
-Markdown is a lightweight and easy-to-use syntax for styling your writing. It includes conventions for
+To set up this scene prefab objects are used. In this example the cube and floor prefabs are implemented and animated. The cube falls and stops upon collision with the floor. A contact distance is added as a buffer. Although this may seem appear unrealistic when the cube stops above the floor (i.e. before appearing to touch it), it is important to add this buffer to give the simulation enough time to compute the collision calculations.
 
 ```python
 
@@ -37,6 +37,20 @@ def createScene(rootNode):
     return rootNode
 
 ```
+
+Next, the cube prefab is replaced with an implimentation of a cube model from scratch.
+
+## Modelling Objects 
+
+There are three types of models for simulation in SOFA,
+
+1. Mechanical model
+2. Visual model
+3. Collision model
+
+ADD PHOTOS!!!!!!!!!!!!!
+
+These models are able to correspond to work together and represent the properties of the object. 
 
 The full code for this scene can be found on the [Defrost robotics github](https://github.com/SofaDefrost/SoftRobots/blob/master/docs/tutorials/FirstSteps/firststeps-tuto.pyscn).
 
