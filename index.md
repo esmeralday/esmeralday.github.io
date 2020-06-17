@@ -1,10 +1,5 @@
 ## Introduction
 
-<details>
-<summary>Menu</summary>
-<br>
-[About](https://esmeralday.github.io/about)
-</details>
 
 ## Modelling
 
