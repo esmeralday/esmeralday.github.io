@@ -1,9 +1,9 @@
 ## Introduction
 
 <details>
-<summary>How do I dropdown?</summary>
+<summary>Menu</summary>
 <br>
-[About](esmeralday.github.io/about)
+[About](https://esmeralday.github.io/about)
 </details>
 
 ## Modelling
