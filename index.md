@@ -40,7 +40,7 @@ def createScene(rootNode):
 
 Next, the cube prefab is replaced with an implimentation of a cube model from scratch.
 
-## Modelling Objects 
+### Modelling Objects 
 
 There are three types of models for simulation in SOFA,
 
