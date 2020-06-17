@@ -1,5 +1,11 @@
 ## Introduction
 
+<details>
+<summary>How do I dropdown?</summary>
+<br>
+[About](esmeralday.github.io/about)
+</details>
+
 ## Modelling
 
 Modelling soft robots is a problematic task as many simulation softwares are unable to realistically mimic the properties of soft, flexible materials. For this project, a soft robotic limb is modeled in simulation before learning algorithms can be tested on it. To achieve realistic results it is important that the software used has certain properties; for example, the ability to accurately model soft materials and the ability to use it to test the machine learning models.
