@@ -43,7 +43,7 @@ def createScene(rootNode):
 
 Next, the cube prefab is replaced with an implimentation of a cube model from scratch.
 
-### Modelling Objects 
+### Object Models 
 
 There are three types of models for simulation in SOFA,
 
@@ -51,7 +51,8 @@ There are three types of models for simulation in SOFA,
 2. Visual model
 3. Collision model
 
-ADD PHOTOS!!!!!!!!!!!!!
+[https://github.com/esmeralday/esmeralday.github.io/blob/master/_includes/images/cube.png](Visual Model)
+[[https://github.com/esmeralday/esmeralday.github.io/blob/master/_includes/images/mechanicalModel.png]](Mechanical Model)
 
 These models are able to correspond to work together and represent the properties of the object. 
 
@@ -76,6 +77,10 @@ ADD PHOTO!!!!!!!!!!!
 Young's modulus indicates a material's ability to remain elastic under tension or compression.
 
 ADD PHOTO!!!!!!!!!!!
+
+## Soft Actuator
+
+
 
 
 
