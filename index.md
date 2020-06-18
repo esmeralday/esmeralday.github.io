@@ -17,6 +17,8 @@ After downloading the SOFA software along with the soft robotics plugin I began 
 
 ### Simple Scene
 
+SOFA is able to animate .pyscn files. These are python files with an extra function named `createScene` that takes a root node as an input. The root node is the main parent node of the node tree. A scene consists of an ordered tree of nodes with parent/child relationships. Every node is built of components with names and features.
+
 To set up this scene prefab objects are used. In this example the cube and floor prefabs are implemented and animated. The cube falls and stops upon collision with the floor. A contact distance is added as a buffer. Although this may seem appear unrealistic when the cube stops above the floor (i.e. before appearing to touch it), it is important to add this buffer to give the simulation enough time to compute the collision calculations.
 
 ```python
@@ -55,9 +57,31 @@ These models are able to correspond to work together and represent the propertie
 
 The full code for this scene can be found on the [Defrost robotics github](https://github.com/SofaDefrost/SoftRobots/blob/master/docs/tutorials/FirstSteps/firststeps-tuto.pyscn).
 
+### Manipulating Objects
+
+An object can be moved in the scene by either modigying the translation vector feature in the code, or by using the SOFA gui. On the left hand panel, expand the menu for the object and double-click on the `MechanicalObject mstate` variable. Then go to the `Transofrmation` tab and modify the translation values. This will only apply to the current session and is does not affect the code.
+
+### Modelling Deformable Objects
+
+Due to the material properties of soft robots the simulation is only able to approxiamte the true behaviour of a deformable object. The most essential material properties to take into account are the stiffness and elasticity. The material modeled here will be silicone.
+
+The behaviour of silicone is simulated using FEM along with a tetrahedral mesh provided with SOFA.
+
+There are two important parameters to note which will be used in the code: Poisson's ratio and Young's modulus.
+
+Poisson's ratio is a measure of the ratio of expansion perpendicular to contraction of a material.
+
+ADD PHOTO!!!!!!!!!!!
+
+Young's modulus indicates a material's ability to remain elastic under tension or compression.
+
+ADD PHOTO!!!!!!!!!!!
 
 
-Syntax highlighted code block
+
+
+
+
 
 # Header 1
 ## Header 2
