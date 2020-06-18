@@ -51,8 +51,7 @@ There are three types of models for simulation in SOFA,
 2. Visual model
 3. Collision model
 
-![Visual Model](https://github.com/esmeralday/esmeralday.github.io/blob/master/_includes/images/cube.png | width=50)
-![Mechanical Model](https://github.com/esmeralday/esmeralday.github.io/blob/master/_includes/images/mechanicalModel.png | width=50)
+<img src="https://github.com/esmeralday/esmeralday.github.io/blob/master/_includes/images/cube.png" alt="Visual Model" width="300"/> <img src="https://github.com/esmeralday/esmeralday.github.io/blob/master/_includes/images/mechanicalModel.png" alt="Mechanical Model" width="300"/>
 
 These models are able to correspond to work together and represent the properties of the object. 
 
