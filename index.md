@@ -170,9 +170,23 @@ ADD VIDEO
 
 ### Final Scene
 
-Finally, the finger actuator is copied twice to make a three pronged flexible and compliant grip. This can be used to pick up objects.
+Finally, two more finger actuators to make a three pronged flexible and compliant grip. This can be used to pick up objects. The full simualtion is composed of two python files and a .pyscn file.
+
+- gripper.py where the finger objects are positioned and instantiated. 
+- finger.py where the soft actuator is modelled using the mesh and material properties.
+- cablegripper.pyscn where the scene is put together and loaded into SOFA.
 
 ADD VIDEO OF GRIPPER PICKING UP OBJECT!!!!
+
+## TO DO!!!!!!!!
+
+- Explain the import of the CollisionMesh (if it was not done before)
+
+- Explain the load of the mesh...
+
+- Explain the role of collision group. Object in two different groups can collide.
+
+- Explain the contactDistance parameters
 
 
 
