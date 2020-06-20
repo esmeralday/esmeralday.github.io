@@ -79,6 +79,106 @@ ADD PHOTO!!!!!!!!!!!
 
 ## Soft Actuator
 
+To model and simulate the behaviour of a soft actuator a volumetric mesh is used. This is computed using a surface mesh or image and the `CGALPlugin`.
+The actuator mesh is loaded into SOFA and the force field can be turned on in the view panel to show the triangles making up the object.  The volumetric mesh is the .vtk file while a secondary surface mesh .stl file is used to model the surface. When the scene is animated using the code above the soft actuator will begin to free fall under gravity so it can be modified to have a fixed end on one side holding it in place. This is done by adding a `FixedBox`.
+
+ADD PHOTO!!!!
+
+```python
+from stlib.physics.constraint import FixedBox
+
+def Finger(parentNode=None, name="Finger",
+           rotation=[0.0, 0.0, 0.0], translation=[0.0, 0.0, 0.0],
+           fixingBox=[0.0,0.0,0.0], pullPointLocation=[0.0,0.0,0.0]):
+
+    finger = Node(parentNode, name)
+    eobject = ElasticMaterialObject(finger,
+                               volumeMeshFileName="data/mesh/finger.vtk",
+                               poissonRatio=0.3,
+                               youngModulus=18000,
+                               totalMass=0.5,
+                               surfaceColor=[0.0, 0.8, 0.7],
+                               surfaceMeshFileName="data/mesh/finger.stl",
+                               rotation=rotation,
+                               translation=translation)
+
+    FixedBox(eobject, atPositions=[-10,-10,-10,10,10,15],
+                      doVisualization=True)
+
+    return finger
+```
+
+### Control
+
+The finger will be actuated using cables that span from the base to the top of the finger. The cable is modeled using a template provided by the SoftRobot plugin called `PullingCable`. This is added to the finger function shown above.
+A controller can be made using the PythonScriptController class and then added to the script.
+
+```python
+from softrobots.actuators import PullingCable
+    ...
+import Sofa
+
+class FingerController(Sofa.PythonScriptController):
+    def __init__(self, node, cable):
+        self.cableconstraintvalue = cable.getObject("CableConstraint").findData('value')
+        self.name = "FingerController"
+
+    def onKeyPressed(self,c):
+        if (c == "+"):
+            self.cableconstraintvalue.value =  self.cableconstraintvalue.value[0][0] + 1.
+        if (c == "-"):
+            self.cableconstraintvalue.value =  self.cableconstraintvalue.value[0][0] - 1.
+    
+def Finger(parentNode=None, name="Finger",
+           rotation=[0.0, 0.0, 0.0], translation=[0.0, 0.0, 0.0],
+           fixingBox=[0.0,0.0,0.0], pullPointLocation=[0.0,0.0,0.0]):
+           ...
+           
+    cable = PullingCable(eobject, cableGeometry=loadPointListFromFile("data/mesh/cable.json"))
+    
+    FingerController(eobject, cable) # This causes a segmentation fault but the controller still works without it?
+```
+    
+    ADD VIDEO 
+    
+    
+#### Note: Some issues with visualising the cables, although they are working as they should in terms of manipulating the actuator.
+
+### Collisions
+
+Collisions are computationally expensive in SOFA so these need to be defined in the code based on the object's geometric properties. This is done by adding a collision mesh. Self-collisions are handled in this way as well.
+
+```python
+def Finger(parentNode):
+    ## ... the finger
+    ## ... the cable..
+    ## ... the controller..
+
+    CollisionMesh(eobject,
+         surfaceMeshFileName="data/mesh/finger.stl", name="part0", collisionGroup=1)
+
+
+    CollisionMesh(eobject,
+             surfaceMeshFileName="data/mesh/fingerCollision_part1.stl", name="part1", collisionGroup=1)
+
+    CollisionMesh(eobject,
+              surfaceMeshFileName="data/mesh/fingerCollision_part2.stl", name="part2", collisionGroup=2)
+
+```
+
+ADD VIDEO
+
+### Final Scene
+
+Finally, the finger actuator is copied twice to make a three pronged flexible and compliant grip. This can be used to pick up objects.
+
+ADD VIDEO OF GRIPPER PICKING UP OBJECT!!!!
+
+
+
+    
+
+
 
 
 
