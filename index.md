@@ -53,6 +53,8 @@ There are three types of models for simulation in SOFA,
 
 <img src="http://github.com/esmeralday/esmeralday.github.io/blob/master/_includes/images/cube.png" alt="Visual Model" width="300"/> <img src="http://github.com/esmeralday/esmeralday.github.io/blob/master/_includes/images/mechanicalModel.png" alt="Mechanical Model" width="300"/>
 
+<img src="http://github.com/esmeralday/esmeralday.github.io/blob/master/_includes/images/cube.png"  class="img-responsive" alt=""> </div>
+
 These models are able to correspond to work together and represent the properties of the object. 
 
 The full code for this scene can be found on the [Defrost robotics github](https://github.com/SofaDefrost/SoftRobots/blob/master/docs/tutorials/FirstSteps/firststeps-tuto.pyscn).
