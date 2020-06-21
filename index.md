@@ -53,7 +53,7 @@ There are three types of models for simulation in SOFA,
 
 <img src="http://github.com/esmeralday/esmeralday.github.io/blob/master/_includes/images/cube.png" alt="Visual Model" width="300"/> <img src="http://github.com/esmeralday/esmeralday.github.io/blob/master/_includes/images/mechanicalModel.png" alt="Mechanical Model" width="300"/>
 
-<img src="http://github.com/esmeralday/esmeralday.github.io/blob/master/_includes/images/cube.png"  class="img-responsive" alt=""> </div>
+<img src="_includes/images/cube.png" alt="Visual Model" width="300"/>
 
 These models are able to correspond to work together and represent the properties of the object. 
 
@@ -84,7 +84,8 @@ ADD PHOTO!!!!!!!!!!!
 To model and simulate the behaviour of a soft actuator a volumetric mesh is used. This is computed using a surface mesh or image and the `CGALPlugin`.
 The actuator mesh is loaded into SOFA and the force field can be turned on in the view panel to show the triangles making up the object.  The volumetric mesh is the .vtk file while a secondary surface mesh .stl file is used to model the surface. When the scene is animated using the code above the soft actuator will begin to free fall under gravity so it can be modified to have a fixed end on one side holding it in place. This is done by adding a `FixedBox`.
 
-<video src="https://github.com/esmeralday/esmeralday.github.io/blob/master/_includes/images/fixedBox.mov" width="320" height="200" controls preload></video>
+<video src="http://github.com/esmeralday/esmeralday.github.io/blob/master/_includes/images/fixedBox.mov" width="320" height="200" controls preload></video>
+
 
 ```python
 from stlib.physics.constraint import FixedBox
