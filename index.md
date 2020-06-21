@@ -168,6 +168,12 @@ def Finger(parentNode):
 
 ADD VIDEO
 
+The CollisionMesh is imported from a template which is part of the STLIB plugin. This makes it easier to handle collision and self-collision events as well as contact handling.
+The mesh is then added to the `finger.py` file which describes the soft actuator. In total three seperate meshes are needed to cover the finger. Each mesh is responsible for a specified `collisionGroup`. The `collisionMesh` is made of a set of triangles; triangles from different collision groups can interact and overlap.
+The collision groups handle any contact between objects. In the video below, the finger is shown to comply and deform when it hits the rigid cube. There is also a `contactDistance` parameter which was also used when testing the cube falling onto the floor. The contact distance ensures there is enough time to carry out calculations when a collision occurs. If the contact distance is set to zero the cube falling into the floor might have already gone into the floor by the time the computation is complete.
+
+ADD VIDEO OF DEFORMATION
+
 ### Final Scene
 
 Finally, two more finger actuators to make a three pronged flexible and compliant grip. This can be used to pick up objects. The full simualtion is composed of two python files and a .pyscn file.
@@ -180,13 +186,7 @@ ADD VIDEO OF GRIPPER PICKING UP OBJECT!!!!
 
 ## TO DO!!!!!!!!
 
-- Explain the import of the CollisionMesh (if it was not done before)
 
-- Explain the load of the mesh...
-
-- Explain the role of collision group. Object in two different groups can collide.
-
-- Explain the contactDistance parameters
 
 
 
