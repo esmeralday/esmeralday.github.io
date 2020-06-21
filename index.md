@@ -82,7 +82,7 @@ ADD PHOTO!!!!!!!!!!!
 To model and simulate the behaviour of a soft actuator a volumetric mesh is used. This is computed using a surface mesh or image and the `CGALPlugin`.
 The actuator mesh is loaded into SOFA and the force field can be turned on in the view panel to show the triangles making up the object.  The volumetric mesh is the .vtk file while a secondary surface mesh .stl file is used to model the surface. When the scene is animated using the code above the soft actuator will begin to free fall under gravity so it can be modified to have a fixed end on one side holding it in place. This is done by adding a `FixedBox`.
 
-ADD PHOTO!!!!
+<video src="https://github.com/esmeralday/esmeralday.github.io/blob/master/_includes/images/fixedBox.mov" width="320" height="200" controls preload></video>
 
 ```python
 from stlib.physics.constraint import FixedBox
@@ -139,14 +139,17 @@ def Finger(parentNode=None, name="Finger",
     FingerController(eobject, cable) # This causes a segmentation fault but the controller still works without it?
 ```
     
-    ADD VIDEO 
+<video src="https://github.com/esmeralday/esmeralday.github.io/blob/master/_includes/images/control.mov" width="320" height="200" controls preload></video>    
     
     
 #### Note: Some issues with visualising the cables, although they are working as they should in terms of manipulating the actuator.
 
 ### Collisions
 
-Collisions are computationally expensive in SOFA so these need to be defined in the code based on the object's geometric properties. This is done by adding a collision mesh. Self-collisions are handled in this way as well.
+Collisions are computationally expensive in SOFA so these need to be defined in the code based on the object's geometric properties. This is done by adding a collision mesh. Self-collisions are handled in this way as well. 
+Two more finger actuators are added to make a three pronged flexible and compliant grip. 
+
+<img src="http://github.com/esmeralday/esmeralday.github.io/blob/master/_includes/images/fingerWithMeshCG.png" alt="Visual Model" width="300"/> <img src="http://github.com/esmeralday/esmeralday.github.io/blob/master/_includes/images/gripperWithMeshCG.png" alt="Visual Model" width="300"/>
 
 ```python
 def Finger(parentNode):
@@ -166,23 +169,21 @@ def Finger(parentNode):
 
 ```
 
-ADD VIDEO
-
 The CollisionMesh is imported from a template which is part of the STLIB plugin. This makes it easier to handle collision and self-collision events as well as contact handling.
 The mesh is then added to the `finger.py` file which describes the soft actuator. In total three seperate meshes are needed to cover the finger. Each mesh is responsible for a specified `collisionGroup`. The `collisionMesh` is made of a set of triangles; triangles from different collision groups can interact and overlap.
 The collision groups handle any contact between objects. In the video below, the finger is shown to comply and deform when it hits the rigid cube. There is also a `contactDistance` parameter which was also used when testing the cube falling onto the floor. The contact distance ensures there is enough time to carry out calculations when a collision occurs. If the contact distance is set to zero the cube falling into the floor might have already gone into the floor by the time the computation is complete.
 
-ADD VIDEO OF DEFORMATION
+<video src="https://github.com/esmeralday/esmeralday.github.io/blob/master/_includes/images/deformations.mov" width="320" height="200" controls preload></video>
 
 ### Final Scene
 
-Finally, two more finger actuators to make a three pronged flexible and compliant grip. This can be used to pick up objects. The full simualtion is composed of two python files and a .pyscn file.
+This can be used to pick up objects. The full simualtion is composed of two python files and a .pyscn file.
 
 - gripper.py where the finger objects are positioned and instantiated. 
 - finger.py where the soft actuator is modelled using the mesh and material properties.
 - cablegripper.pyscn where the scene is put together and loaded into SOFA.
 
-ADD VIDEO OF GRIPPER PICKING UP OBJECT!!!!
+<video src="https://github.com/esmeralday/esmeralday.github.io/blob/master/_includes/images/pickingUpCube.mov" width="320" height="200" controls preload></video>
 
 ## TO DO!!!!!!!!
 
