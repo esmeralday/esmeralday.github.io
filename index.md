@@ -55,6 +55,8 @@ There are three types of models for simulation in SOFA,
 
 <img src="_includes/images/cube.png" alt="Visual Model" width="300"/>
 
+![Visual Model](_includes/images/cube.png)
+
 These models are able to correspond to work together and represent the properties of the object. 
 
 The full code for this scene can be found on the [Defrost robotics github](https://github.com/SofaDefrost/SoftRobots/blob/master/docs/tutorials/FirstSteps/firststeps-tuto.pyscn).
