@@ -41,6 +41,8 @@ def createScene(rootNode):
 
 ```
 
+<video src="images/fallingCube.mov" width="320" height="200" controls preload></video><video src="images/fallingCubeWGravity.mov" width="320" height="200" controls preload></video>
+
 Next, the cube prefab is replaced with an implimentation of a cube model from scratch.
 
 ### Object Models 
@@ -70,7 +72,7 @@ def createScene(rootNode):
 
 	MainHeader(rootNode, gravity=[0.0,-981.0,0.0])
 
-    #Collision built-in function 
+   	#Collision built-in function 
 	ContactHeader(rootNode, alarmDistance=10, contactDistance=5)
 
 	cube = rootNode.createChild("Cube")
@@ -120,7 +122,6 @@ def createScene(rootNode):
 
 	collision.createObject('RigidMapping')
 
-	########################################
 	### Adding the Floor 
 	floor = Floor(rootNode,
 		  name="Floor",
@@ -146,11 +147,11 @@ There are two important parameters to note which will be used in the code: Poiss
 
 Poisson's ratio is a measure of the ratio of expansion perpendicular to contraction of a material.
 
-<img src="images/cube.png" alt="Visual Model" width="300"/> <img src="images/poisson.png" alt="Mechanical Model" width="300"/>
+<img src="images/poisson.png" alt="Poisson Ratio" width="300"/>
 
 Young's modulus indicates a material's ability to remain elastic under tension or compression.
 
-<img src="images/cube.png" alt="Visual Model" width="300"/> <img src="images/elasticity.png" alt="Mechanical Model" width="300"/>
+<img src="images/elasticity.png" alt="Young's Modulus" width="300"/>
 
 ## Soft Actuator
 
@@ -261,7 +262,13 @@ This can be used to pick up objects. The full simualtion is composed of two pyth
 
 <video src="images/pickingUpCube.mov" width="320" height="200" controls preload></video>
 
+
+
+
 ## TO DO!!!!!!!!
+- volumetric mesh generation write-up
+- soft robotic control paper write-up
+- Understand FEM better
 
 
 
