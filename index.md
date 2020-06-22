@@ -1,4 +1,4 @@
-## Introduction
+# SOFT ROBOTS
 
 
 ## Modelling
@@ -58,6 +58,80 @@ These models are able to correspond to work together and represent the propertie
 
 The full code for this scene can be found on the [Defrost robotics github](https://github.com/SofaDefrost/SoftRobots/blob/master/docs/tutorials/FirstSteps/firststeps-tuto.pyscn).
 
+```python
+
+from stlib.scene import MainHeader, ContactHeader
+from stlib.visuals import ShowGrid
+from stlib.solver import DefaultSolver
+from stlib.physics.rigid import Floor
+
+def createScene(rootNode):
+	ShowGrid(rootNode)
+
+	MainHeader(rootNode, gravity=[0.0,-981.0,0.0])
+
+    #Collision built-in function 
+	ContactHeader(rootNode, alarmDistance=10, contactDistance=5)
+
+	cube = rootNode.createChild("Cube")
+
+	### Mechanical model
+
+	totalMass = 1.0
+	volume = 1.0
+	inertiaMatrix = [1.0, 0.0, 0.0, 0.0, 1.0, 0.0, 0.0, 0.0, 1.0]
+
+
+	cube.createObject('MechanicalObject', name="DOF", template="Rigid3", translation=[0.0,0.0,0.0], rotation=[0.0,0.0,0.0])
+	cube.createObject('UniformMass', name="vertexMass", vertexMass=[totalMass, volume, inertiaMatrix[:]])
+
+	# Material behaviour when submitted to constraints
+    
+	cube.createObject('UncoupledConstraintCorrection')
+
+	### Time integration and solver
+
+	cube.createObject('EulerImplicitSolver', name='odesolver')
+	cube.createObject('CGLinearSolver', name='Solver')
+
+
+	### Visual Object of the Cube
+
+	visual = cube.createChild("CubeVisual")
+    
+	# Graphic model based on a mesh
+	visual.createObject('MeshObjLoader', name="loader", filename="mesh/smCube27.obj", triangulate="true")
+	visual.createObject('OglModel', name="Visual", src="@loader", color=[0.1,0.0,1.0], scale=20.0)
+    
+	# Building a correspondance between the mechanical and the graphical representation
+	visual.createObject('RigidMapping')
+
+	### Collision Object for the Cube
+
+	collision = cube.createChild("CubeCollisionModel")
+	collision.createObject('MeshObjLoader', name="loader", filename="mesh/smCube27.obj", triangulate="true", scale=20.0)
+
+	collision.createObject('MeshTopology', src="@loader")
+	collision.createObject('MechanicalObject')
+
+	collision.createObject('TTriangleModel')
+	collision.createObject('TLineModel')
+	collision.createObject('TPointModel')
+
+	collision.createObject('RigidMapping')
+
+	########################################
+	### Adding the Floor 
+	floor = Floor(rootNode,
+		  name="Floor",
+          translation=[0.0,-300.0,0.0],
+          uniformScale=5.0,
+          isAStaticObject=True)
+
+	return rootNode
+    
+```
+
 ### Manipulating Objects
 
 An object can be moved in the scene by either modigying the translation vector feature in the code, or by using the SOFA gui. On the left hand panel, expand the menu for the object and double-click on the `MechanicalObject mstate` variable. Then go to the `Transofrmation` tab and modify the translation values. This will only apply to the current session and is does not affect the code.
@@ -72,11 +146,11 @@ There are two important parameters to note which will be used in the code: Poiss
 
 Poisson's ratio is a measure of the ratio of expansion perpendicular to contraction of a material.
 
-ADD PHOTO!!!!!!!!!!!
+<img src="images/cube.png" alt="Visual Model" width="300"/> <img src="images/poisson.png" alt="Mechanical Model" width="300"/>
 
 Young's modulus indicates a material's ability to remain elastic under tension or compression.
 
-ADD PHOTO!!!!!!!!!!!
+<img src="images/cube.png" alt="Visual Model" width="300"/> <img src="images/elasticity.png" alt="Mechanical Model" width="300"/>
 
 ## Soft Actuator
 
