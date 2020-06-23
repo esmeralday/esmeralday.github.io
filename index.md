@@ -84,8 +84,17 @@ def createScene(rootNode):
 	inertiaMatrix = [1.0, 0.0, 0.0, 0.0, 1.0, 0.0, 0.0, 0.0, 1.0]
 
 
-	cube.createObject('MechanicalObject', name="DOF", template="Rigid3", translation=[0.0,0.0,0.0], rotation=[0.0,0.0,0.0])
-	cube.createObject('UniformMass', name="vertexMass", vertexMass=[totalMass, volume, inertiaMatrix[:]])
+	cube.createObject('MechanicalObject', 
+			name="DOF", 
+			template="Rigid3", 
+			translation=[0.0,0.0,0.0], 
+			rotation=[0.0,0.0,0.0])
+			
+	cube.createObject('UniformMass', 
+			name="vertexMass", 
+			vertexMass=[totalMass, 
+			volume, 
+			inertiaMatrix[:]])
 
 	# Material behaviour when submitted to constraints
     
@@ -102,16 +111,29 @@ def createScene(rootNode):
 	visual = cube.createChild("CubeVisual")
     
 	# Graphic model based on a mesh
-	visual.createObject('MeshObjLoader', name="loader", filename="mesh/smCube27.obj", triangulate="true")
-	visual.createObject('OglModel', name="Visual", src="@loader", color=[0.1,0.0,1.0], scale=20.0)
+	visual.createObject('MeshObjLoader', 
+			name="loader", 
+			filename="mesh/smCube27.obj", 
+			triangulate="true")
+			
+	visual.createObject('OglModel', 
+			name="Visual", 
+			src="@loader", 
+			color=[0.1,0.0,1.0], 
+			scale=20.0)
     
-	# Building a correspondance between the mechanical and the graphical representation
+	# Building a correspondance between mechanical and visual representation
 	visual.createObject('RigidMapping')
 
 	### Collision Object for the Cube
 
 	collision = cube.createChild("CubeCollisionModel")
-	collision.createObject('MeshObjLoader', name="loader", filename="mesh/smCube27.obj", triangulate="true", scale=20.0)
+	
+	collision.createObject('MeshObjLoader', 
+			name="loader", 
+			filename="mesh/smCube27.obj", 
+			triangulate="true", 
+			scale=20.0)
 
 	collision.createObject('MeshTopology', src="@loader")
 	collision.createObject('MechanicalObject')
@@ -124,10 +146,10 @@ def createScene(rootNode):
 
 	### Adding the Floor 
 	floor = Floor(rootNode,
-		  name="Floor",
-          translation=[0.0,-300.0,0.0],
-          uniformScale=5.0,
-          isAStaticObject=True)
+	  	name="Floor",
+          	translation=[0.0,-300.0,0.0],
+          	uniformScale=5.0,
+          	isAStaticObject=True)
 
 	return rootNode
     
@@ -147,11 +169,11 @@ There are two important parameters to note which will be used in the code: Poiss
 
 Poisson's ratio is a measure of the ratio of expansion perpendicular to contraction of a material.
 
-<img src="images/poisson.png" alt="Poisson Ratio" width="300"/>
+<img src="images/poisson.png" alt="Poisson Ratio" width="400"/>
 
 Young's modulus indicates a material's ability to remain elastic under tension or compression.
 
-<img src="images/elasticity.png" alt="Young's Modulus" width="300"/>
+<img src="images/elasticity.png" alt="Young's Modulus" width="400"/>
 
 ## Soft Actuator
 
@@ -235,14 +257,19 @@ def Finger(parentNode):
     ## ... the controller..
 
     CollisionMesh(eobject,
-         surfaceMeshFileName="data/mesh/finger.stl", name="part0", collisionGroup=1)
-
-
-    CollisionMesh(eobject,
-             surfaceMeshFileName="data/mesh/fingerCollision_part1.stl", name="part1", collisionGroup=1)
+         surfaceMeshFileName="data/mesh/finger.stl", 
+	 name="part0", 
+	 collisionGroup=1)
 
     CollisionMesh(eobject,
-              surfaceMeshFileName="data/mesh/fingerCollision_part2.stl", name="part2", collisionGroup=2)
+             surfaceMeshFileName="data/mesh/fingerCollision_part1.stl", 
+	     name="part1", 
+	     collisionGroup=1)
+
+    CollisionMesh(eobject,
+              surfaceMeshFileName="data/mesh/fingerCollision_part2.stl", 
+	      name="part2", 
+	      collisionGroup=2)
 
 ```
 
@@ -264,8 +291,34 @@ This can be used to pick up objects. The full simualtion is composed of two pyth
 
 
 
+## Volumetric Mesh Generation
 
-## TO DO!!!!!!!!
+A volumetric mesh is computed using a surface mesh or an image and the `CGALPlugin`. The plugin is imported and a child node is created. The surface mesh can be any CAD file such as .vtk, .stl or .obj. 
+
+```python
+rootNode.createObject('RequiredPlugin', pluginName='CGALPlugin')
+node = rootNode.createChild('node')
+node.createObject('MeshSTLLoader', name='mesh', filename=path+'finger.stl')
+```
+
+Four parameters are used to control and parametrise the meshing:
+
+- cellSize: this parameter controls the size of mesh tetrahedra. It provides an upper bound on the circumradius of the mesh tetrahedra
+- facetAngle: This parameter controls the shape of surface facets. Actually, it is a lower bound for the angle (in degree) of surface facets. When boundary surfaces are smooth, the termination of the meshing process is guaranteed if the angular bound is at most 30 degrees
+- cellRatio: this parameter controls the shape of mesh cells. Actually, it is an upper bound for the ratio between the circumradius of a mesh tetrahedron and its shortest edge. There is a theoretical bound for this parameter: the Delaunay refinement process is guaranteed to terminate for values larger than 2
+- facetApproximation: the approximation error between the boundary and the subdivision surface. It provides an upper bound for the distance between the circumcenter of a surface facet and the center of a surface Delaunay ball of this facet
+
+```python
+node.createObject('MeshGenerationFromPolyhedron', name='gen', template='Vec3d', inputPoints='@mesh.position', inputTriangles='@mesh.triangles', drawTetras='1',
+    cellSize="10",
+    facetAngle="30",
+    facetSize="4",
+    cellRatio="2",   #Convergence problem if lower than 2
+    facetApproximation="1")
+    
+```
+
+##### TO DO!!!!!!!!
 - volumetric mesh generation write-up
 - soft robotic control paper write-up
 - Understand FEM better
