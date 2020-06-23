@@ -325,8 +325,16 @@ This creates tetrahedrons that work together to create a mesh container. The mes
 
 ```python
 
-#
+# Tetrahedra are stored in a mesh
 node.createObject('Mesh', position='@gen.outputPoints', tetrahedra='@gen.outputTetras')
+
+# Export the volumetric mesh 
+node.createObject('VTKExporter', filename=path+'finger', edges='0', tetras='1', exportAtBegin='1')
+
+# Get feedback from CGAL
+node.createObject('OglModel', filename=path+"finger.stl", color="0.0 0.7 0.7 0.5")
+
+```
 
 ##### TO DO!!!!!!!!
 - volumetric mesh generation write-up
