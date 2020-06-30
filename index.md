@@ -1,6 +1,6 @@
 # SOFT ROBOTS
 
-
+# SOFA
 ## Modelling
 
 Modelling soft robots is a problematic task as many simulation softwares are unable to realistically mimic the properties of soft, flexible materials. For this project, a soft robotic limb is modeled in simulation before learning algorithms can be tested on it. To achieve realistic results it is important that the software used has certain properties; for example, the ability to accurately model soft materials and the ability to use it to test the machine learning models.
@@ -336,10 +336,67 @@ node.createObject('OglModel', filename=path+"finger.stl", color="0.0 0.7 0.7 0.5
 
 ```
 
-##### TO DO!!!!!!!!
-- volumetric mesh generation write-up
-- soft robotic control paper write-up
-- Understand FEM better
+
+# Abaqus
+
+PneuNets, or pneumatic networks, are a type of soft actuator developed at Havard. They consist of a chain of channels and chambers inside an elastomer. When pressurized, the channels inflate thus creating motion.
+
+Expansion occurs at the least stiff regions as these are the most compliant. This means that the motion of the actuator can be altered by modifying the geometry of the actuator such as the wall thickness of material. In this project the material used to simulate the actuator is Elastosil. The material is thinnest in the wall sections between each chamber.  A paper layer has also been included to act as an inextensible strain limiting layer. This helps enable bending motion. In the simulation the bonding ridges and bumps from merging the part together are ignored.
+
+The modelling for the soft actuator is done using Finite Element Method (FEM) in Abaqus. FEM allows us to model the behaviour of the actuator and see the effects of changing various parameters such as material stiffness or chamber dimensions, without needing to refabricate and retest the actuator every time a design parameter is changed.
+
+1. Import parts
+
+The actuator consists of two different materials with different extensibility - the elastomer and the paper parts. The paper part is there to translate the motion of the actuator into bending by minimizing axial expansion.
+The parts are named and imported as solids from .sat files.
+
+2. Make surface placeholder for paper layer
+
+The piece of paper is modelled onto the top of `Bottom layer B` by adding a surface.
+
+3. Assign material properties to the parts
+	
+	a. Create materials
+	
+	b. Assign materials to sections
+
+	Two sections are created: a homogenous shell and a homogeneous solid.
+
+	c. Assign sections to parts
+
+	The materials created are assigned to each section. All sections are made of elastosil, with the paper making up the surface of the top of B.
+
+4. Assemble parts
+
+The parts are assembled using face to face constraints. Six total constraints are needed: 3 translational DOF for each of 2 parts, relative to one fixed part. Then merge everything together.
+
+5. Model paper layer as a skin and assign final section
+
+The paper is added as a skin. This can be added to the Bottom  Layer B which is isolated through the display group manager.
+
+6. Create a surface on inner cavity faces
+
+The inner cavity is modeled by manually selecting the area using the view cut manager. 
+
+7. Apply loads and set boundary conditions
+
+Gravity is added as a static, general load and a fixed end is set. A pressure load is also added to the internal cavity. This PneuNet design curls fully with 8 psi, which is approximately 0.055 MPa.
+
+<img src="images/load.png" alt="Load" width="300"/>
+
+8. Add contact interaction
+
+As the actuator inflates and bends the walls expand and adjacent chambers have physical contact with one another. This needs to be explicitly modelled in Abaqus so that the walls in simulation don’t go into one another. The inner walls are manually selected and self-contact standard interactions are added.
+
+9. Create mesh and run job
+
+A mesh is added to the marged part and it is seed with an `Approximate global size`. The model needs to be an appropriate size so that the model is neither too small and stiff to high distortions nor too big to fit the model face. The mesh type is 3D stress and quadratic. Another mesh is also added to the skin (inextensible paper layer). The part once again needs to be isolated using the `Display Group Manager`. 
+
+<img src="images/mesh.png" alt="Mesh" width="300"/>
+
+
+
+
 
 
 
