@@ -392,7 +392,11 @@ As the actuator inflates and bends the walls expand and adjacent chambers have p
 
 A mesh is added to the marged part and it is seed with an `Approximate global size`. The model needs to be an appropriate size so that the model is neither too small and stiff to high distortions nor too big to fit the model face. The mesh type is 3D stress and quadratic. Another mesh is also added to the skin (inextensible paper layer). The part once again needs to be isolated using the `Display Group Manager`. 
 
+15,000 nodes
 <img src="images/mesh.png" alt="Mesh" width="300"/>
+
+1,700 nodes
+<img src="images/mesh_minNodes.png" alt="Mesh" width="300"/>
 
 
 
