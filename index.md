@@ -445,7 +445,7 @@ A table relating pressure, forces and whether or not the grasp was successful (Y
 
 # Questions
 
-# Concerns
+
 
 - Can I submit several jobs at a time (i.e. several pressure inputs to simulate at the same time, rather than manually submitting different jobs)?
 - When I send this off, how can I check if the grasp was successful without the visual output? (Use contact area graph?)
