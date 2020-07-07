@@ -340,6 +340,8 @@ node.createObject('OglModel', filename=path+"finger.stl", color="0.0 0.7 0.7 0.5
 ```
 
 
+<video src="images/SOFApneunet.mov" width="320" height="200" controls preload></video>
+
 # Abaqus
 
 PneuNets, or pneumatic networks, are a type of soft actuator developed at Havard. They consist of a chain of channels and chambers inside an elastomer. When pressurized, the channels inflate thus creating motion.
