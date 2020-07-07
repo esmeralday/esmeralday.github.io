@@ -416,7 +416,7 @@ The von mises stresses can be shown for the full model, the inner chamber cavity
 
 To test a grasping simulation the pneumatic gripper was placed over a steel pin which it can close around when pressurised.
 
-<img src="images/graspTest.png" alt="Mesh" width="300"/>
+<img src="images/graspTest.png" alt="Mesh" width="500"/>
 
 By creating a surface on the circumference of the pin the forces there can be monitored and plotted. Since there is a node limit on the student version, the surface covers the whole pin, but with the ability to include more nodes the surface may be partitioned to get more specific results.
 
