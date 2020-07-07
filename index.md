@@ -430,13 +430,26 @@ The data we are interested in is the contact force felt on the pin; this is rela
 
 The data will be fed into a classifier that will then predict a successfull grasp based on the pressure input for a gripper of given dimension and material properties.
 
+
+
+# TO DO
+We want to ensure the model is working perfectly before sending it off. The simulation should go through applying pressure to the gripper, causing the gripper to close around the cylindrical pin. The gripper should then move upwards and the grasp can be classed as successful if the pin does not fall during this motion. The data collected should include the total contact area, the total forces due to contact pressure and the static and dynamic frictional forces. 
+
+The pin should be light (<500g) to make it easier to grasp. 
+
+- Use friction coefficient of glass
+- Run jobs with different amounts of pressure and record results
+
+The end results should look like this: 
+A table relating pressure, forces and whether or not the grasp was successful (Y/N).
+
 # Questions
 
-- I collect the force data for different values of pressure? correct? (Let's discuss this in detail so I understand exactly what I need to collect for the code)
-- What is a successful grasp?
-- How big should the pin be? I can't check on Abaqus how big the pin needs to be in order for the gripper to close around it.
-- The pressure on the small gripper will cause different effect than the same pressure applied on the complete gripper - how can I predict what pressure values to use for the full gripper with a complete mesh?
-- can't save the data in excel because the UCL license only allows me to use the complete version of Excel online but the Abaqus plugin only interacts with the desktop version.
+# Concerns
+
+- Can I submit several jobs at a time (i.e. several pressure inputs to simulate at the same time, rather than manually submitting different jobs)?
+- When I send this off, how can I check if the grasp was successful without the visual output? (Use contact area graph?)
+
 
 
 
