@@ -1,5 +1,8 @@
 # SOFT ROBOTS
 
+
+
+
 # SOFA
 ## Modelling
 
@@ -397,6 +400,44 @@ A mesh is added to the marged part and it is seed with an `Approximate global si
 
 1,700 nodes
 <img src="images/mesh_minNodes.png" alt="Mesh" width="300"/>
+
+To test the gripper a smaller model with fewer than 1,000 nodes was modelled. This was fully analysed and the results saved in an .odb file. The results are also visualised on Abaqus, allowing for assessment of the deformed shape and the extraction of other useful data. 
+
+<img src="images/SimTest.png" alt="Mesh" width="300"/>
+<img src="images/simTestResults.png" alt="Mesh" width="300"/>
+
+The von mises stresses can be shown for the full model, the inner chamber cavity and the inextensible layer:
+
+<img src="images/SimTestResultsMerged.png" alt="Mesh" width="300"/> <img src="images/SimTestResultsChambers.png" alt="Mesh" width="300"/> <img src="images/SimTestResultsPaper.png" alt="Mesh" width="300"/>
+
+## Grasping Simulation
+
+To test a grasping simulation the pneumatic gripper was placed over a steel pin which it can close around when pressurised.
+
+<img src="images/graspTest.png" alt="Mesh" width="300"/>
+
+By creating a surface on the circumference of the pin the forces there can be monitored and plotted. Since there is a node limit on the student version, the surface covers the whole pin, but with the ability to include more nodes the surface may be partitioned to get more specific results.
+
+<video src="images/finishAssembly.mp4" width="320" height="200" controls preload></video>
+<img src="images/contactForce.png" alt="Mesh" width="300"/>
+
+## Data
+
+The data we are interested in is the contact force felt on the pin; this is related to the pressure input. Once this data has been collected the grasp must be qualified as successful or not. The data can then be classified. It should be linearly separable as presumably, there will be a cut-off threshold where the contact force is inadequate to lift the pin. 
+
+The data will be fed into a classifier that will then predict a successfull grasp based on the pressure input for a gripper of given dimension and material properties.
+
+# Questions
+
+- I collect the force data for different values of pressure? correct? (Let's discuss this in detail so I understand exactly what I need to collect for the code)
+- What is a successful grasp?
+- How big should the pin be? I can't check on Abaqus how big the pin needs to be in order for the gripper to close around it.
+- The pressure on the small gripper will cause different effect than the same pressure applied on the complete gripper - how can I predict what pressure values to use for the full gripper with a complete mesh?
+- can't save the data in excel because the UCL license only allows me to use the complete version of Excel online but the Abaqus plugin only interacts with the desktop version.
+
+
+
+
 
 
 
