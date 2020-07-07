@@ -419,6 +419,7 @@ To test a grasping simulation the pneumatic gripper was placed over a steel pin 
 By creating a surface on the circumference of the pin the forces there can be monitored and plotted. Since there is a node limit on the student version, the surface covers the whole pin, but with the ability to include more nodes the surface may be partitioned to get more specific results.
 
 <video src="images/finishAssembly.mp4" width="320" height="200" controls preload></video>
+
 <img src="images/contactForce.png" alt="Mesh" width="300"/>
 
 ## Data
