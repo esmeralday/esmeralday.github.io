@@ -424,6 +424,12 @@ By creating a surface on the circumference of the pin the forces there can be mo
 
 <img src="images/contactForce.png" alt="Mesh" width="300"/>
 
+To test if the grasp is successful in Abaqus, an extra step is added called "Step-Lift". During this step the fixed end of the pneumatic gripper is supressed and instead a load is added to displace it in the direction of the positive y axis. The idea is that the pin should not move up with the gripper if the grasp is unsuccessful. In the case of a successful lift, shaking can also be added to ensure the grasp is secure and the pin does not drop.
+
+<video src="images/grasp_lift.mp4" width="320" height="200" controls preload></video> <video src="images/grasp_liftVONMISES.mp4" width="320" height="200" controls preload></video>
+
+
+
 ## Data
 
 The data we are interested in is the contact force felt on the pin; this is related to the pressure input. Once this data has been collected the grasp must be qualified as successful or not. The data can then be classified. It should be linearly separable as presumably, there will be a cut-off threshold where the contact force is inadequate to lift the pin. 
@@ -437,14 +443,19 @@ We want to ensure the model is working perfectly before sending it off. The simu
 
 The pin should be light (<500g) to make it easier to grasp. 
 
-- Use friction coefficient of glass
+- make pin heavier (why is it only 0.9 grams right now?? its steel...)
+- Use friction coefficient of glass - value of 0.4 gives error and causes job to abort (0.1 still fine)
+- model full size gripper with full mesh
+- add shaking (2-4Hz) to tet grip on pin
 - Run jobs with different amounts of pressure and record results
 
+ALSO:
+- try get forces from SOFA simulation
+
 The end results should look like this: 
-A table relating pressure, forces and whether or not the grasp was successful (Y/N).
+A table relating pressure, contact forces and whether or not the grasp was successful (Y/N).
 
 # Questions
-
 
 
 - Can I submit several jobs at a time (i.e. several pressure inputs to simulate at the same time, rather than manually submitting different jobs)?
