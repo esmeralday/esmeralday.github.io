@@ -430,7 +430,7 @@ To test if the grasp is successful in Abaqus, an extra step is added called "Ste
 
 ## Full Gripper
 
-The full model of the gripper can be seen below. It has a fully detailed mesh totalling 37 762 nodes. The mass of the pin is 141g and the gripper is 21.3g. 
+The full model of the gripper can be seen below. It has a fully detailed mesh totalling 37 762 nodes. The mass of the pin is 141g and the gripper is 121.3g totalling 262g. 
 
 
 <img src="images/fullModel.png" alt="Mesh" width="500"/>
@@ -458,7 +458,6 @@ We want to ensure the model is working perfectly before sending it off. The simu
 
 The pin should be light (<500g) to make it easier to grasp. 
 
-- check mass of pin and gripper
 - Use friction coefficient of glass - value of 0.4 gives error and causes job to abort (0.1 still fine)
 - add shaking (2-4Hz) to tet grip on pin
 
