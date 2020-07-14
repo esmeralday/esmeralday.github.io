@@ -428,6 +428,12 @@ To test if the grasp is successful in Abaqus, an extra step is added called "Ste
 
 <video src="images/grasp_lift.mp4" width="320" height="200" controls preload></video> <video src="images/grasp_liftVONMISES.mp4" width="320" height="200" controls preload></video>
 
+## Full Gripper
+
+The full model of the gripper can be seen below. It has a fully detailed mesh totalling 37 762 nodes. The mass of the pin is 141g and the gripper is 21.3g. 
+
+
+<img src="images/fullModel.png" alt="Mesh" width="500"/>
 
 
 ## Data
@@ -444,7 +450,7 @@ Some interesting data can be collected to infer information on the grasp. The to
 
 These values can be stored in an Excel file as shown below,
 
-<img src="images/excelSnippet.png" alt="Mesh" width="500"/>
+<img src="images/excelSnippet.png" alt="Mesh" width="300"/>
 
 
 # TO DO
