@@ -436,6 +436,15 @@ The data we are interested in is the contact force felt on the pin; this is rela
 
 The data will be fed into a classifier that will then predict a successfull grasp based on the pressure input for a gripper of given dimension and material properties.
 
+Some interesting data can be collected to infer information on the grasp. The total area in contact over time can be monitored to qualify whether the grasp has been successful or not. The total force due to contact pressure and the total force due to frictional stress can also be graphed. 
+
+<img src="images/TotalForceDueToContactPressure.png" alt="Mesh" width="500"/>
+<img src="images/TotalForceDueToContactPressureAndFrictionalStress.png" alt="Mesh" width="500"/>
+<img src="images/TotalAreaInContactGraph.png" alt="Mesh" width="500"/>
+
+These values can be stored in an Excel file as shown below,
+
+<img src="images/excelSnippet.png" alt="Mesh" width="500"/>
 
 
 # TO DO
@@ -443,11 +452,9 @@ We want to ensure the model is working perfectly before sending it off. The simu
 
 The pin should be light (<500g) to make it easier to grasp. 
 
-- make pin heavier (why is it only 0.9 grams right now?? its steel...)
+- check mass of pin and gripper
 - Use friction coefficient of glass - value of 0.4 gives error and causes job to abort (0.1 still fine)
-- model full size gripper with full mesh
 - add shaking (2-4Hz) to tet grip on pin
-- Run jobs with different amounts of pressure and record results
 
 ALSO:
 - try get forces from SOFA simulation
