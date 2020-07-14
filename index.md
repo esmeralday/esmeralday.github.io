@@ -426,7 +426,7 @@ By creating a surface on the circumference of the pin the forces there can be mo
 
 To test if the grasp is successful in Abaqus, an extra step is added called "Step-Lift". During this step the fixed end of the pneumatic gripper is supressed and instead a load is added to displace it in the direction of the positive y axis. The idea is that the pin should not move up with the gripper if the grasp is unsuccessful. In the case of a successful lift, shaking can also be added to ensure the grasp is secure and the pin does not drop.
 
-<video src="images/grasp_lift.mp4" width="320" height="200" controls preload></video> <video src="images/grasp_liftVONMISES.mp4" width="320" height="200" controls preload></video>
+<video src="images/graspLift.mp4" width="320" height="200" controls preload></video> <img src="images/GripperS22.png" alt="Mesh" width="300"/>
 
 ## Full Gripper
 
